@@ -1,0 +1,20 @@
+[
+    {
+        "id": "u64f8c123e5f0a",
+        "username": "max",
+        "password": "$2y$10$X9n2lDk5Y1YdAOl0uimNqO0Z2pQKJzZg6cFvDoX9uD3tQK4vQfEwW",
+        "created_at": "2025-08-31T12:34:56+00:00"
+    },
+    {
+        "id": "u68b4c007775724.84421703",
+        "username": "Test",
+        "password": "$2y$10$.gXPRwXIte6.iNsiPe3d0etjrlsMpwupiBPldct.6quTFQ6NH.unS",
+        "created_at": "2025-08-31T23:35:03+02:00"
+    },
+    {
+        "id": "u68b4cc7624d923.92064323",
+        "username": "chris",
+        "password": "$2y$10$xJPFaLk9U4IFCTEaNga01.w8o/vXCFu/2cxS3K0Z/btxm94WN5GMe",
+        "created_at": "2025-09-01T00:28:06+02:00"
+    }
+]

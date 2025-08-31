@@ -1,0 +1,13 @@
+# Aktiviert RewriteEngine für "pretty" short slugs
+RewriteEngine On
+RewriteBase /
+
+# Wenn Datei oder Verzeichnis existiert, nichts tun
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Route /slug zum redirect.php
+RewriteRule ^([A-Za-z0-9_-]+)$ redirect.php?slug=$1 [L,QSA]
+
+# Sonst index
+RewriteRule ^$ index.php [L]
