@@ -2,7 +2,7 @@
 require_once __DIR__ . '/inc/functions.php';
 require_login();
 
-$user = current_user();
+$user = app_get_current_user();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php');
