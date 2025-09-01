@@ -1,4 +1,4 @@
-# Aktiviert RewriteEngine für "pretty" short slugs
+# Aktiviert RewriteEngine für "pretty" short slugs, muss in Apache aktiviert sein. Siehe apache config. httpd.conf im conf ordner
 RewriteEngine On
 RewriteBase /
 
@@ -6,7 +6,7 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Route /slug zum redirect.php
+# Route /slug zum redirect.php, um gespeicherte Adresse aufzulösen
 RewriteRule ^([A-Za-z0-9_-]+)$ redirect.php?slug=$1 [L,QSA]
 
 # Sonst index
