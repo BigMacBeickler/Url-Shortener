@@ -125,7 +125,7 @@ function find_url_by_slug($slug){
     return null;
 }
 
-//neue url speichern
+//neue url speichern, mit unique id
 function save_new_url($user_id, $slug, $long_url, $description = ''){
     $urls = load_json(URLS_FILE);
     $id = uniqid('r', true);
@@ -180,14 +180,15 @@ function increment_visit($slug){
     if($changed) save_json(URLS_FILE, $urls);
 }
 
-// CSRF token (einfach)
-//safety first! Check for correct Token. https://www.gnucitizen.org/blog/csrf-demystified/
-function csrf_token(){
-    if(empty($_SESSION['csrf_token'])){
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
+// csfr token
+//create csfr token if none exists
+function csfr_token(){
+    if(empty($_SESSION['csfr_token'])){
+        $_SESSION['csfr_token'] = bin2hex(random_bytes(16));
     }
-    return $_SESSION['csrf_token'];
+    return $_SESSION['csfr_token'];
 }
-function csrf_check($token){
-    return hash_equals($_SESSION['csrf_token'] ?? '', $token ?? '');
+//safety first! Check for correct Token. https://www.gnucitizen.org/blog/csrf-demystified/
+function csfr_check($token){
+    return hash_equals($_SESSION['csfr_token'] ?? '', $token ?? '');
 }

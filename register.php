@@ -3,8 +3,8 @@ require_once __DIR__ . '/inc/functions.php';
 require_once __DIR__ . '/inc/header.php';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $token = $_POST['csrf'] ?? '';
-    if(!csrf_check($token)) die('Ungültiges Formular.');
+    $token = $_POST['csfr'] ?? '';
+    if(!csfr_check($token)) die('Ungültiges Formular.');
 
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <div class="box">
   <h1 class="title">Registrieren</h1>
   <form method="post">
-    <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
+    <input type="hidden" name="csfr" value="<?= e(csfr_token()) ?>">
     <div class="field">
       <label class="label">Benutzername</label>
       <div class="control"><input class="input" name="username" required></div>

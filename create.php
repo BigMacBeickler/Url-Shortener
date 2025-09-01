@@ -1,5 +1,5 @@
-//Link creation. csfr check damit kein fremder Unfug anstellt. 
 <?php
+//Link creation. csfr check damit kein fremder Unfug anstellt. 
 require_once __DIR__ . '/inc/functions.php';
 require_once __DIR__ . '/inc/header.php';
 require_login();
@@ -8,8 +8,8 @@ $user = app_get_current_user();
 if($_SERVER['REQUEST_METHOD'] !== 'POST'){
     header('Location: index.php'); exit;
 }
-$token = $_POST['csrf'] ?? '';
-if(!csrf_check($token)) die('Ungültiges Formular.'); //die --> nicht der Artikel, sondern stirb
+$token = $_POST['csfr'] ?? '';
+if(!csfr_check($token)) die('Ungültiges Formular.'); //die --> nicht der Artikel, sondern stirb
 $long = trim($_POST['long_url'] ?? '');
 $slug = trim($_POST['slug'] ?? '');
 $description = trim($_POST['description'] ?? '');

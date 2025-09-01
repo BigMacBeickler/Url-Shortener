@@ -1,12 +1,34 @@
-//Überprüfe session bzw starte. Verweis auf function Ordner um Functions nutzen zu können.
 <?php
+//Überprüfe session bzw starte. Verweis auf function Ordner um Functions nutzen zu können.
+//navbar für alle Seiten. Startseite, Profil und Log-out falls eingeloggt. Login und Registrieren falls nicht
 if (session_status() === PHP_SESSION_NONE) session_start();
+
+$inactivity_time = 15 * 60;
+
+// Check if the last_timestamp is set
+// and last_timestamp is greater then 15 minutes or 9000 seconds
+// then unset $_SESSION variable & destroy session data
+if (isset($_SESSION['last_timestamp']) && (time() - $_SESSION['last_timestamp']) > $inactivity_time) {
+    session_unset();
+    session_destroy();
+
+    //Redirect user to login page
+    header("Location: login.php");
+    exit();
+  }else{
+    // Regenerate new session id and delete old one to prevent session fixation attack
+    session_regenerate_id(true);
+
+    // Update the last timestamp
+    $_SESSION['last_timestamp'] = time();
+  }
+
 $currentUser = app_get_current_user();
 require_once __DIR__ . '/functions.php';
 function e($s){ return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); } //Hilfsfunktion um sichere HTML-sichere Strings zu erzeugen | https://www.php.net/manual/en/function.htmlspecialchars.php
 ?>
 
-//navbar für alle Seiten. Startseite, Profil und Log-out falls eingeloggt. Login und Registrieren falls nicht
+
 <!DOCTYPE html>
 <html lang="de">
 <head>

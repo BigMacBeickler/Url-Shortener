@@ -39,7 +39,7 @@ $myUrls = array_filter($urls, fn($u) => $u['user_id'] === $user['id']);
           <td class="is-actions">
             <a class="button is-small" href="edit.php?id=<?= e($u['id']) ?>">Bearbeiten</a>
             <form style="display:inline" method="post" action="delete.php" onsubmit="return confirm('Willst du diese URL löschen?');">
-              <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
+              <input type="hidden" name="csfr" value="<?= e(csfr_token()) ?>">
               <input type="hidden" name="id" value="<?= e($u['id']) ?>">
               <button class="button is-small is-danger">Löschen</button>
             </form>
@@ -54,7 +54,7 @@ $myUrls = array_filter($urls, fn($u) => $u['user_id'] === $user['id']);
 <div class="box">
   <h2 class="subtitle">Profil löschen</h2>
   <form method="post" action="delete_profile.php" onsubmit="return confirm('Willst du wirklich dein Profil und alle deine URLs löschen?');">
-    <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
+    <input type="hidden" name="csfr" value="<?= e(csfr_token()) ?>">
     <button class="button is-danger">Profil & URLs löschen</button>
   </form>
 </div>

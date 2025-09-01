@@ -1,11 +1,13 @@
-
 <?php
+
+//Hauptseite. Zeigt entweder Login/Registrieren oder die URL-Verwaltung an, je nachdem ob eingeloggt oder nicht.
+
 require_once __DIR__ . '/inc/functions.php';
 require_once __DIR__ . '/inc/header.php';
 
 $user = app_get_current_user();
 $urls = load_json(URLS_FILE);
-// filter for current user if logged in
+// Zeig die Urls nur für den eingeloggten User
 if($user) {
   $myUrls = array_filter($urls, function($u) use($user){ return $u['user_id'] === $user['id']; });
 }
@@ -15,11 +17,14 @@ if($user) {
   <p>Erstelle und verwalte Deine Kurz-URLs. Melde dich an, um loszulegen.</p>
 </div>
 
+
 <?php if($user): ?>
+  <!--Abfrage um zu bestimmen welche Ansicht gezeigt wird-->
+  <!--Dieser Unterschied wie man Kommentare schreib zwischen HTML und PHP ist etwas nervig...-->
   <div class="box">
     <h2 class="subtitle">Neue Kurz-URL erstellen</h2>
     <form action="create.php" method="post">
-      <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
+      <input type="hidden" name="csfr" value="<?= e(csfr_token()) ?>">
       <div class="field">
         <label class="label">Lange URL</label>
         <div class="control"><input class="input" name="long_url" placeholder="https://example.com/..." required></div>
@@ -52,7 +57,7 @@ if($user) {
           <td class="is-actions">
             <a class="button is-small" href="edit.php?id=<?= e($u['id']) ?>">Bearbeiten</a>
             <form style="display:inline" method="post" action="delete.php" onsubmit="return confirm('Löschen?');">
-              <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
+              <input type="hidden" name="csfr" value="<?= e(csfr_token()) ?>">
               <input type="hidden" name="id" value="<?= e($u['id']) ?>">
               <button class="button is-small is-danger">Löschen</button>
             </form>

@@ -9,11 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// CSRF prüfen
-$token = $_POST['csrf'] ?? '';
-if (!csrf_check($token)) die('Ungültiges Formular.');
+// csfr prüfen
+$token = $_POST['csfr'] ?? '';
+if (!csfr_check($token)) die('Ungültiges Formular.');
 
-// 1. Alle URLs des Benutzers löschen
+// Erst alle URLs des Benutzers löschen
 $urls = load_json(URLS_FILE);
 $new_urls = [];
 foreach ($urls as $u) {
@@ -21,7 +21,7 @@ foreach ($urls as $u) {
 }
 save_json(URLS_FILE, $new_urls);
 
-// 2. Benutzer selbst löschen
+// Dann Benutzer löschen
 $users = load_json(USERS_FILE);
 $new_users = [];
 foreach ($users as $u) {

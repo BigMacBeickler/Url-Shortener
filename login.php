@@ -6,8 +6,8 @@ $errors = [];
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
-    $token = $_POST['csrf'] ?? '';
-    if(!csrf_check($token)) $errors[] = 'Ungültiges Formular.';
+    $token = $_POST['csfr'] ?? '';
+    if(!csfr_check($token)) $errors[] = 'Ungültiges Formular.';
     if(empty($errors)){
         $user = verify_user($username, $password);
         if($user){
@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <div class="notification is-danger"><?= e($err) ?></div>
   <?php endforeach; ?>
   <form method="post">
-    <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
+    <input type="hidden" name="csfr" value="<?= e(csfr_token()) ?>">
     <div class="field">
       <label class="label">Benutzername</label>
       <div class="control"><input class="input" name="username" required></div>

@@ -16,5 +16,11 @@
         "username": "chris",
         "password": "$2y$10$xJPFaLk9U4IFCTEaNga01.w8o/vXCFu/2cxS3K0Z/btxm94WN5GMe",
         "created_at": "2025-09-01T00:28:06+02:00"
+    },
+    {
+        "id": "u68b5e137dc9095.63452046",
+        "username": "test",
+        "password": "$2y$10$iaVc2wOe02HuNm8VvM.QM.LtYludjO.hZXRdwEkXQTBKFCD6N/AZi",
+        "created_at": "2025-09-01T20:08:55+02:00"
     }
 ]
