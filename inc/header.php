@@ -1,10 +1,12 @@
+//Überprüfe session bzw starte. Verweis auf function Ordner um Functions nutzen zu können.
 <?php
 if (session_status() === PHP_SESSION_NONE) session_start();
 $currentUser = app_get_current_user();
 require_once __DIR__ . '/functions.php';
-function e($s){ return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
+function e($s){ return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); } //Hilfsfunktion um sichere HTML-sichere Strings zu erzeugen | https://www.php.net/manual/en/function.htmlspecialchars.php
 ?>
 
+//navbar für alle Seiten. Startseite, Profil und Log-out falls eingeloggt. Login und Registrieren falls nicht
 <!DOCTYPE html>
 <html lang="de">
 <head>
